@@ -1,0 +1,25 @@
+Music Hunter AI 0.8 - patch for existing Android Studio project.
+
+Changes:
+- Song cards show each track duration; --:-- when source does not provide one.
+- Playing song shows position/duration in its card, like 00:15 / 03:42.
+- Archive lengths are read from file metadata where available.
+- Update checks occur on app opening and periodically in the background (Android JobScheduler, approx. 12 hours).
+- New APK downloads through Android DownloadManager, and an install prompt appears on next app opening.
+- Android requires the user's confirmation to install APK updates.
+- One-time public GitHub Releases repository and SAME release signing key are essential.
+- For Android 6-9, background APK download needs already-granted storage permission.
+- Fixed the PowerShell Windows encoding bug in the preparation and publication scripts.
+
+INSTRUCTIONS FOR EXISTING 0.7 PROJECT:
+1. Back up the existing project folder.
+2. Copy all files from the PATCH directory into the existing MusicHunterAI project.
+3. In Android Studio click Sync Now (if offered).
+4. Build > Generate App Bundles or APKs > Generate APKs.
+5. For online updates: set up your own PUBLIC GitHub repository, create a persistent release signing key,
+   configure repository secrets, and publish new releases from Windows with PUBLISH_UPDATE.cmd.
+   See: НАСТРОЙКА_АВТООБНОВЛЕНИЙ.md
+
+IMPORTANT: A newly release-signed APK normally cannot update a debug-signed APK installed with Android Studio.
+The initial switch may require uninstalling the debug APK and installing the release APK once.
+After that, new releases signed with the same key can be downloaded without USB.

@@ -1,0 +1,66 @@
+name: Сборка и публикация APK
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+permissions:
+  contents: write
+jobs:
+  signed-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get sources
+        uses: actions/checkout@v4
+      - name: Install Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Android SDK
+        uses: android-actions/setup-android@v3
+      - name: Install Android SDK 36
+        run: sdkmanager "platforms;android-36" "build-tools;36.0.0"
+      - name: Prepare official Gradle Wrapper
+        shell: pwsh
+        run: ./prepare_gradle.ps1
+      - name: Check tag matches app version
+        shell: bash
+        run: |
+          APP_VERSION=$(sed -n 's/.*versionName = "\([^"]*\)".*/\1/p' app/build.gradle.kts | head -n 1)
+          if [ "v$APP_VERSION" != "$GITHUB_REF_NAME" ]; then
+            echo "Tag $GITHUB_REF_NAME must match versionName $APP_VERSION" >&2
+            exit 1
+          fi
+      - name: Decode signing key (never print key)
+        shell: bash
+        env:
+          KEY_B64: ${{ secrets.MHA_KEYSTORE_BASE64 }}
+          STORE_PASS: ${{ secrets.MHA_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.MHA_KEY_ALIAS }}
+          KEY_PASS: ${{ secrets.MHA_KEY_PASSWORD }}
+        run: |
+          if [ -z "$KEY_B64" ] || [ -z "$STORE_PASS" ] || [ -z "$KEY_ALIAS" ] || [ -z "$KEY_PASS" ]; then
+            echo "Release signing secrets are not configured." >&2
+            exit 1
+          fi
+          printf '%s' "$KEY_B64" | base64 --decode > "$RUNNER_TEMP/musichunter-release.jks"
+          echo "MHA_KEYSTORE_FILE=$RUNNER_TEMP/musichunter-release.jks" >> "$GITHUB_ENV"
+      - name: Build signed APK
+        env:
+          MHA_KEYSTORE_PASSWORD: ${{ secrets.MHA_KEYSTORE_PASSWORD }}
+          MHA_KEY_ALIAS: ${{ secrets.MHA_KEY_ALIAS }}
+          MHA_KEY_PASSWORD: ${{ secrets.MHA_KEY_PASSWORD }}
+          MHA_REPOSITORY: ${{ github.repository }}
+        run: |
+          chmod +x gradlew
+          ./gradlew :app:assembleRelease --no-daemon
+          test -f app/build/outputs/apk/release/app-release.apk
+          cp app/build/outputs/apk/release/app-release.apk MusicHunterAI.apk
+      - name: Publish free GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" MusicHunterAI.apk \
+            --title "Music Hunter AI $GITHUB_REF_NAME" \
+            --notes "Бесплатное обновление Music Hunter AI. Установка подтверждается на устройстве Android." \
+            --latest

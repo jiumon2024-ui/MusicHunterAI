@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/root" android:orientation="vertical" android:paddingLeft="10dp" android:paddingRight="10dp" android:paddingTop="0dp" android:paddingBottom="0dp" android:background="#090817" android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ScrollView android:id="@+id/resultScroll" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:fillViewport="false" android:overScrollMode="ifContentScrolls" android:clipToPadding="false" android:scrollbars="vertical" android:scrollbarStyle="insideOverlay">
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingTop="5dp" android:paddingBottom="8dp"><LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingBottom="6dp">
+        <ImageView android:layout_width="38dp" android:layout_height="38dp" android:src="@drawable/hunter_avatar" android:contentDescription="Значок Music Hunter AI"/>
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:paddingLeft="10dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Music Hunter AI" android:textColor="#F9F5FF" android:textStyle="bold" android:textSize="18sp" android:fontFamily="sans-serif"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Твой музыкальный поисковик" android:textColor="#A7A0CC" android:textSize="10sp" android:fontFamily="sans-serif"/>
+        </LinearLayout>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="БЕСПЛАТНО" android:textColor="#7CECC9" android:textSize="9sp" android:textStyle="bold" android:padding="5dp" android:background="@drawable/chip_bg" android:fontFamily="sans-serif"/>
+    </LinearLayout>
+
+    <EditText android:id="@+id/query" android:layout_width="match_parent" android:layout_height="44dp" android:singleLine="true" android:inputType="text" android:hint="Название, исполнитель, жанр или запрос..." android:textColor="#FFFFFF" android:textColorHint="#A8A2C9" android:textSize="13sp" android:background="@drawable/field_bg" android:paddingHorizontal="12dp" android:imeOptions="actionSearch" android:fontFamily="sans-serif"/>
+
+    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingTop="6dp" android:paddingBottom="2dp">
+        <Button android:id="@+id/searchButton" android:text="✦ Исследовать" android:layout_width="match_parent" android:layout_height="42dp" android:textColor="#FFFFFF" android:textStyle="bold" android:textSize="12sp" android:background="@drawable/main_button_bg" android:textAllCaps="false" android:minHeight="0dp" android:minWidth="0dp" android:fontFamily="sans-serif"/>
+
+    </LinearLayout>
+
+    <HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content" android:scrollbars="none" android:fillViewport="false">
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:paddingBottom="4dp" android:paddingTop="2dp">
+            <Button android:id="@+id/chipElectronic" android:layout_width="wrap_content" android:layout_height="32dp" android:text="♫ Электроника" android:textAllCaps="false" android:textSize="10sp" android:textColor="#DFD3FF" android:background="@drawable/chip_bg" android:minHeight="0dp" android:minWidth="0dp" android:fontFamily="sans-serif"/>
+            <Button android:id="@+id/chipRemix" android:layout_width="wrap_content" android:layout_height="32dp" android:layout_marginLeft="7dp" android:text="↻ Ремиксы" android:textAllCaps="false" android:textSize="10sp" android:textColor="#DFD3FF" android:background="@drawable/chip_bg" android:minHeight="0dp" android:minWidth="0dp" android:fontFamily="sans-serif"/>
+            <Button android:id="@+id/chipInstrumental" android:layout_width="wrap_content" android:layout_height="32dp" android:layout_marginLeft="7dp" android:text="♫ Инструментал" android:textAllCaps="false" android:textSize="10sp" android:textColor="#DFD3FF" android:background="@drawable/chip_bg" android:minHeight="0dp" android:minWidth="0dp" android:fontFamily="sans-serif"/>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingBottom="2dp">
+        <Button android:id="@+id/updateButton" android:layout_width="wrap_content" android:layout_height="32dp" android:text="↻ Обновления" android:textAllCaps="false" android:textColor="#E3D5FF" android:textSize="10sp" android:background="@drawable/chip_bg" android:minHeight="0dp" android:minWidth="0dp" android:fontFamily="sans-serif"/>
+        <TextView android:id="@+id/updateStatus" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:paddingLeft="9dp" android:text="Версия 0.9 · настройка обновлений" android:textSize="10sp" android:textColor="#BBAFDF" android:maxLines="1" android:ellipsize="end" android:fontFamily="sans-serif"/>
+    </LinearLayout>
+
+    <TextView android:id="@+id/status" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="#B3A7D1" android:textSize="11sp" android:paddingBottom="3dp" android:maxLines="3" android:text="Агент готов · Поиск по интернету и аудиокаталогам" android:fontFamily="sans-serif"/>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingBottom="3dp">
+        <TextView android:id="@+id/sourceOverview" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="● Источники ещё не проверялись" android:textSize="10sp" android:textColor="#BBAFDF" android:fontFamily="sans-serif"/>
+        <Button android:id="@+id/sourceDetailsButton" android:layout_width="wrap_content" android:layout_height="32dp" android:minHeight="0dp" android:minWidth="0dp" android:text="Источники ▾" android:textAllCaps="false" android:textSize="10sp" android:background="@drawable/chip_bg" android:textColor="#DCCAFB" android:fontFamily="sans-serif"/>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/sourceDetailsPanel" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone" android:orientation="vertical" android:padding="9dp" android:layout_marginBottom="6dp" android:background="@drawable/player_bg">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="СОСТОЯНИЕ ПОИСКОВЫХ ИСТОЧНИКОВ" android:textStyle="bold" android:textColor="#DCC3FA" android:textSize="10sp" android:paddingBottom="6dp" android:fontFamily="sans-serif"/>
+        <TextView android:id="@+id/openverseState" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Openverse · не проверен" android:textColor="#CEC3EF" android:textSize="11sp" android:paddingBottom="3dp" android:fontFamily="sans-serif"/>
+        <TextView android:id="@+id/commonsState" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Wikimedia Commons · не проверен" android:textColor="#CEC3EF" android:textSize="11sp" android:paddingBottom="3dp" android:fontFamily="sans-serif"/>
+        <TextView android:id="@+id/webIndexStatus" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Веб-индекс · ещё не проверен" android:textColor="#91DAD1" android:textSize="10sp" android:paddingBottom="3dp" android:fontFamily="sans-serif"/>
+        <TextView android:id="@+id/archiveState" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Internet Archive · не проверен" android:textColor="#CEC3EF" android:textSize="11sp" android:paddingBottom="3dp" android:fontFamily="sans-serif"/>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Отсчёт — до следующей проверки, а не гарантия снятия лимита. Автоповтор работает, пока открыт экран приложения." android:textSize="10sp" android:textColor="#AFA2CF" android:fontFamily="sans-serif"/>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/results" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical"/>
+    </LinearLayout></ScrollView>
+
+    <LinearLayout android:id="@+id/browserPanel" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:visibility="gone">
+        <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <Button android:id="@+id/closeBrowser" android:layout_width="0dp" android:layout_weight="1" android:layout_height="40dp" android:text="← Результаты" android:textAllCaps="false" android:textSize="10sp" android:fontFamily="sans-serif" android:minHeight="0dp" android:minWidth="0dp"/>
+            <Button android:id="@+id/scanBrowser" android:layout_width="0dp" android:layout_weight="1" android:layout_height="40dp" android:text="♫ Найти аудио" android:textAllCaps="false" android:textSize="10sp" android:fontFamily="sans-serif" android:minHeight="0dp" android:minWidth="0dp"/>
+            <Button android:id="@+id/exploreSite" android:layout_width="0dp" android:layout_weight="1" android:layout_height="40dp" android:text="🤖 Обойти сайт" android:textAllCaps="false" android:textSize="10sp" android:fontFamily="sans-serif" android:minHeight="0dp" android:minWidth="0dp"/>
+        </LinearLayout>
+        <TextView android:id="@+id/browserHint" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="#B7C8EB" android:textSize="11sp" android:text="Можно изучать только открытые страницы и доступные аудиоссылки." android:fontFamily="sans-serif"/>
+        <WebView android:id="@+id/webView" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/playerPanel" android:orientation="vertical" android:padding="8dp" android:background="@drawable/player_bg" android:layout_marginTop="3dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="СЕЙЧАС ИГРАЕТ" android:textColor="#D47CFF" android:textSize="9sp" android:textStyle="bold" android:fontFamily="sans-serif"/>
+        <TextView android:id="@+id/nowPlaying" android:layout_width="match_parent" android:layout_height="wrap_content" android:maxLines="1" android:ellipsize="end" android:text="Выбери трек для прослушивания" android:textColor="#FFFFFF" android:textStyle="bold" android:textSize="12sp" android:paddingTop="2dp" android:fontFamily="sans-serif"/>
+        <SeekBar android:id="@+id/seekBar" android:layout_width="match_parent" android:layout_height="28dp" android:max="1000" android:progressTint="#D74BFC" android:thumbTint="#D74BFC" android:progressBackgroundTint="#483E6A"/>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+            <TextView android:id="@+id/position" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="00:00" android:textColor="#D7CEE7" android:textSize="10sp" android:fontFamily="sans-serif"/>
+            <TextView android:id="@+id/duration" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="00:00" android:textColor="#D7CEE7" android:textSize="10sp" android:fontFamily="sans-serif"/>
+        </LinearLayout>
+        <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingTop="1dp">
+            <Button android:id="@+id/playPause" android:layout_width="0dp" android:layout_weight="1" android:layout_height="38dp" android:text="▶ Играть" android:background="@drawable/main_button_bg" android:textColor="#FFFFFF" android:textAllCaps="false" android:minHeight="0dp" android:minWidth="0dp" android:textSize="11sp" android:fontFamily="sans-serif"/>
+            <Button android:id="@+id/download" android:layout_width="0dp" android:layout_weight="1" android:layout_marginLeft="8dp" android:layout_height="38dp" android:text="⬇ Скачать" android:background="@drawable/secondary_button_bg" android:textColor="#FFFFFF" android:textAllCaps="false" android:minHeight="0dp" android:minWidth="0dp" android:textSize="11sp" android:fontFamily="sans-serif"/>
+            <Button android:id="@+id/myDownloads" android:layout_width="0dp" android:layout_weight="1" android:layout_marginLeft="8dp" android:layout_height="38dp" android:text="☷ Файлы" android:background="@drawable/secondary_button_bg" android:textColor="#FFFFFF" android:textSize="11sp" android:textAllCaps="false" android:minHeight="0dp" android:minWidth="0dp" android:fontFamily="sans-serif"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

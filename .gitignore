@@ -1,0 +1,17 @@
+*.iml
+.gradle/
+.idea/
+local.properties
+/build/
+**/build/
+.DS_Store
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.pem
+key.properties
+keystore.properties
+signing.properties
+.env
+.env.*
